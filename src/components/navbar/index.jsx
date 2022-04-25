@@ -19,6 +19,10 @@ const NavBar = () => {
       name: "About",
       path: "/about",
     },
+    {
+      name: "Countries",
+      path: "/countries",
+    },
   ];
 
   return (
@@ -35,7 +39,7 @@ const NavBar = () => {
     >
       <VStack as={"nav"} spacing={4}>
         {links.map((link) => (
-          <Link as={ReactRouterLink} to={link.path}>
+          <Link as={ReactRouterLink} to={link.path} key={link.name}>
             <Text>{link.name}</Text>
           </Link>
         ))}
