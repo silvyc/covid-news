@@ -13,7 +13,6 @@ function App() {
           md: "row",
         }}
         justifyContent="space-between"
-        alignItems="center"
         my={5}
         mx={10}
       >

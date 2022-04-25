@@ -8,8 +8,16 @@ const NavBar = () => {
       path: "/",
     },
     {
-      name: "Graphs",
-      path: "/graphs",
+      name: "Countrywise Graphs",
+      path: "/country",
+    },
+    {
+      name: "Daygüais Graphs",
+      path: "/daywise",
+    },
+    {
+      name: "About",
+      path: "/about",
     },
   ];
 
@@ -23,6 +31,7 @@ const NavBar = () => {
         lg: 300,
         xl: 400,
       }}
+      py={5}
     >
       <VStack as={"nav"} spacing={4}>
         {links.map((link) => (
