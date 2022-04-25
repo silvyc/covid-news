@@ -3,8 +3,12 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 15vmin;
+  margin: 20px;
+}
+
+.Logo-Uninorte {
+  height: 13vmin;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,18 +18,14 @@
 }
 
 .App-header {
-  background-color: #0e1a32;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #2286c3;
+  min-height: 20vh;
+  color: rgb(255, 255, 255);
 }
 
-.hola-mundo{
-  background-color: #214da6;
+.Titulo-Header{
+  font-family: 'Casanova';
+  font-size: 78px ;
 }
 
 .App-link {
