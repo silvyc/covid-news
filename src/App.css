@@ -3,19 +3,25 @@
 }
 
 .App-logo {
-  height: 15vmin;
-  margin: 20px;
+  height: 13vmin;
+  margin: 5px;
 }
 
 .Logo-Uninorte {
   height: 12vmin;
-  margin: 27px;
+  margin: 5px;
+  margin-right: 5px;
 }
 
 .App-header {
   background-color: #2286c3;
-  min-height: 20vh;
+  min-height: 14vh;
   color: rgb(255, 255, 255);
+}
+
+.Body-color {
+  background-color: #ededed;
+  min-height: 80vh;
 }
 
 .App-link {

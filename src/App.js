@@ -14,6 +14,9 @@ function App() {
         <img src="/img/COVID NEWS.png" className="App-logo" alt="logo" align='left'/>
         <img src="/img/Logo-UNINORTE.png" className ="Logo-Uninorte" alt="logo" align='right'/>
       </header>
+      <body>
+      <Button>El que me presione es gay</Button>
+      </body>
     </div>
   );
 }
