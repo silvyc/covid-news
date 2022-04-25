@@ -25,7 +25,8 @@
 
 .Titulo-Header{
   font-family: 'Casanova';
-  font-size: 78px ;
+  font-size: 78px;
+  text-align: left;
 }
 
 .App-link {
