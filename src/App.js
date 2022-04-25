@@ -11,8 +11,8 @@ function App() {
   return (
     <div>
       <header className="App-header">
-        <img src="/img/icono-covid.png" className="App-logo" alt="logo" align='left'/>
-        <text className = "Titulo-Header" align='left'>COVID NEWS</text>
+        <img src="/img/COVID NEWS.png" className="App-logo" alt="logo" align='left'/>
+        <img src="/img/Logo-UNINORTE.png" className ="Logo-Uninorte" alt="logo" align='right'/>
       </header>
     </div>
   );
