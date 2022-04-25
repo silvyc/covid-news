@@ -1,23 +1,30 @@
-import './App.css';
-import { Button } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/react';
-import {useState} from 'react';
+import { Box, Stack } from "@chakra-ui/react";
+import Routing from "./routes/routes";
+import NavBar from "./components/navbar";
+import Header from "./components/header";
 
 function App() {
-  const [cont,setCont] = useState(0);
-  const incNum = ( ) => {
-    setCont((prevState)=> prevState + 1);
-  }
   return (
-    <div>
-      <header className="App-header">
-        <img src="/img/COVID NEWS.png" className="App-logo" alt="logo" align='left'/>
-        <img src="/img/Logo-UNINORTE.png" className ="Logo-Uninorte" alt="logo" align='right'/>
-      </header>
-      <body>
-      <Button>El que me presione es gay</Button>
-      </body>
-    </div>
+    <Box height="100%">
+      <Header />
+      <Stack
+        direction={{
+          sm: "column",
+          md: "row",
+        }}
+        justifyContent="space-between"
+        alignItems="center"
+        my={5}
+        mx={10}
+      >
+        <Box>
+          <Routing />
+        </Box>
+        <Box>
+          <NavBar />
+        </Box>
+      </Stack>
+    </Box>
   );
 }
 
