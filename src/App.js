@@ -2,6 +2,7 @@ import { Box, Stack } from "@chakra-ui/react";
 import Routing from "./routes/routes";
 import NavBar from "./components/navbar";
 import Header from "./components/header";
+import MyChart from "./components/charts";
 
 function App() {
   return (

@@ -12,16 +12,12 @@ const NavBar = () => {
       path: "/country",
     },
     {
-      name: "Daygüais Graphs",
-      path: "/daywise",
+      name: "Daywise Graphs",
+      path: "/daily",
     },
     {
       name: "About",
       path: "/about",
-    },
-    {
-      name: "Countries",
-      path: "/countries",
     },
   ];
 

@@ -12,7 +12,7 @@ const Header = () => (
       justifyContent="space-between"
       alignItems="center"
       bgColor="cokiBlue.500"
-      minHeight="6vh"
+      minHeight="8vh"
       px="2rem"
     >
       <Logo src="COVID NEWS.png" />

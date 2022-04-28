@@ -1,6 +1,6 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 
-export default function Graphs() {
+export default function About() {
   return (
     <Box>
       <Text>Aquí está el micropene de guarito</Text>
