@@ -10,7 +10,11 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { getCovidRegionHundred, getCovidRegionInfo, getCovidRegionNew } from "../api/covidcasescountry";
+import {
+  getCovidRegionHundred,
+  getCovidRegionInfo,
+  getCovidRegionNew,
+} from "../api/covidcasescountry";
 
 ChartJS.register(
   CategoryScale,
@@ -33,6 +37,7 @@ export const options1 = {
     },
   },
 };
+
 export const options2 = {
   responsive: true,
   plugins: {
@@ -58,7 +63,6 @@ export const options3 = {
   },
 };
 
-
 export default function Daily() {
   const [regionInfo, setRegionInfo] = useState([]);
   const [regionNewData, setRegionNewData] = useState([]);
@@ -76,28 +80,28 @@ export default function Daily() {
         {
           label: "Deaths",
           data: regionInfo.map((country) => country.region_deaths),
-          backgroundColor: 'rgba(54, 99, 255, 0.4)',
+          backgroundColor: "rgba(54, 99, 255, 0.4)",
         },
         {
           label: "Recovered",
           data: regionInfo.map((country) => country.region_recovered),
-          backgroundColor: 'rgba(54, 99, 255, 0.6)',
+          backgroundColor: "rgba(54, 99, 255, 0.6)",
         },
         {
           label: "Confirmed",
           data: regionInfo.map((country) => country.region_confirmed),
-          backgroundColor: 'rgba(54, 99, 255, 0.8)',
+          backgroundColor: "rgba(54, 99, 255, 0.8)",
         },
         {
           label: "Active",
           data: regionInfo.map((country) => country.region_active),
-          backgroundColor: 'rgba(54, 99, 255, 1)',
+          backgroundColor: "rgba(54, 99, 255, 1)",
         },
       ],
     }),
     [regionInfo, labels]
   );
-  
+
   const data2 = useMemo(
     () => ({
       labels,
@@ -105,41 +109,47 @@ export default function Daily() {
         {
           label: "New Cases",
           data: regionNewData.map((newcases) => newcases.new_cases),
-          backgroundColor: 'rgba(54, 99, 255, 0.4)',
+          backgroundColor: "rgba(54, 99, 255, 0.4)",
         },
         {
           label: "New Deaths",
           data: regionNewData.map((newcases) => newcases.new_deaths),
-          backgroundColor: 'rgba(54, 99, 255, 0.6)',
+          backgroundColor: "rgba(54, 99, 255, 0.6)",
         },
         {
           label: "New Recovered",
           data: regionNewData.map((newcases) => newcases.new_recovered),
-          backgroundColor: 'rgba(54, 99, 255, 0.8)',
+          backgroundColor: "rgba(54, 99, 255, 0.8)",
         },
       ],
     }),
     [regionNewData, labels]
   );
-  
+
   const data3 = useMemo(
     () => ({
       labels,
       datasets: [
         {
           label: "Deaths per 100 Cases",
-          data: regionHundredCases.map((hundredcases) => hundredcases.deaths_100cases),
-          backgroundColor: 'rgba(54, 99, 255, 0.4)',
+          data: regionHundredCases.map(
+            (hundredcases) => hundredcases.deaths_100cases
+          ),
+          backgroundColor: "rgba(54, 99, 255, 0.4)",
         },
         {
           label: "Recovered per 100 Cases",
-          data: regionHundredCases.map((hundredcases) => hundredcases.recovered_100cases),
-          backgroundColor: 'rgba(54, 99, 255, 0.6)',
+          data: regionHundredCases.map(
+            (hundredcases) => hundredcases.recovered_100cases
+          ),
+          backgroundColor: "rgba(54, 99, 255, 0.6)",
         },
         {
           label: "Deaths per 100 Recovered",
-          data: regionHundredCases.map((hundredcases) => hundredcases.deaths_100recovered),
-          backgroundColor: 'rgba(54, 99, 255, 0.8)',
+          data: regionHundredCases.map(
+            (hundredcases) => hundredcases.deaths_100recovered
+          ),
+          backgroundColor: "rgba(54, 99, 255, 0.8)",
         },
       ],
     }),
@@ -159,14 +169,12 @@ export default function Daily() {
         sm: "80vw",
         md: "50vw",
       }}
-    > 
+    >
       <VStack spacing={20}>
-      <Bar data={data1} options={options1} />
-      <Bar data={data2} options={options2} />
-      <Bar data={data3} options={options3} />
+        <Bar data={data1} options={options1} />
+        <Bar data={data2} options={options2} />
+        <Bar data={data3} options={options3} />
       </VStack>
-      
     </Box>
-    
   );
 }
