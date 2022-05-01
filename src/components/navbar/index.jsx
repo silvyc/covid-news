@@ -36,7 +36,7 @@ const NavBar = () => {
       <VStack as={"nav"} spacing={4}>
         {links.map((link) => (
           <Link as={ReactRouterLink} to={link.path} key={link.name}>
-            <Text>{link.name}</Text>
+            <Text color='white' >{link.name}</Text>
           </Link>
         ))}
       </VStack>
