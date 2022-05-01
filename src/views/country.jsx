@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Box, Progress, Text } from "@chakra-ui/react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { getCountries } from "../api/countries";
 import {
   Table,
@@ -15,12 +15,16 @@ import {
 
 export default function Country() {
   const [countries, setCountries] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getCountries().then((data) => setCountries(data));
+    setIsLoading(true);
+    getCountries()
+      .then((data) => setCountries(data))
+      .finally(() => setIsLoading(false));
   }, []);
 
-  const tableHeadersFooters = [
+  const headersFooters = [
     {
       key: "id",
       label: "ID",
@@ -35,17 +39,26 @@ export default function Country() {
     },
   ];
 
+  const TableHeaderFooter = () => (
+    <Tr>
+      {headersFooters.map((header) => (
+        <Th key={header.key}>{header.label}</Th>
+      ))}
+    </Tr>
+  );
+
   return (
     <Box>
       <TableContainer>
-        <Table variant="striped" colorScheme="gray">
-          <TableCaption>Imperial to metric conversion factors</TableCaption>
+        <Table size="lg" variant="striped" colorScheme="gray">
+          <TableCaption>
+            {isLoading && (
+              <Progress size="xs" isIndeterminate colorScheme="cokiBlue" />
+            )}
+            <Text>Tabla de Países y prefijos</Text>
+          </TableCaption>
           <Thead>
-            <Tr>
-              {tableHeadersFooters.map((header) => (
-                <Th key={header.key}>{header.label}</Th>
-              ))}
-            </Tr>
+            <TableHeaderFooter />
           </Thead>
           <Tbody>
             {countries.map((country) => (
@@ -57,11 +70,7 @@ export default function Country() {
             ))}
           </Tbody>
           <Tfoot>
-            <Tr>
-              {tableHeadersFooters.map((header) => (
-                <Th key={header.key}>{header.label}</Th>
-              ))}
-            </Tr>
+            <TableHeaderFooter />
           </Tfoot>
         </Table>
       </TableContainer>
