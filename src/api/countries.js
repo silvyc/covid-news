@@ -1,8 +1,9 @@
-export const getCountries = () => {
-  const request = fetch("http://localhost:8000/graphs", {
-    method: 'GET',
-    headers: new Headers({ 'Content-type': 'application/json'}),
-    mode: 'no-cors'
+export const getCountries = async () => {
+  const request = await fetch("http://localhost:8000/countries/", {
+    method: "GET",
+    headers: new Headers({ "Content-type": "application/json" }),
+    mode: "cors",
   });
-  return request;
+  const data = await request.json();
+  return data;
 };
