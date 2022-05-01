@@ -1,17 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { getCountries } from "../api/countries";
 
 export default function Country() {
   useEffect(() => {
-    const request = fetch("http://localhost:8000/countries", {
-      'mode': 'cors',
-      'headers': {
-          'Access-Control-Allow-Origin': '*',
-      }
-  }).then((response) =>
-      response.json()
-    );
-    console.log(request);
+    console.log(getCountries());
   }, []);
 
   return <Box></Box>;
