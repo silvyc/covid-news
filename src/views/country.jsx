@@ -1,79 +1,172 @@
-import { Box, Progress, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { getCountries } from "../api/countries";
+import { Box, VStack } from "@chakra-ui/react";
+import { useEffect, useMemo, useState } from "react";
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-} from "@chakra-ui/react";
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import { getCovidRegionHundred, getCovidRegionInfo, getCovidRegionNew } from "../api/covidcasescountry";
 
-export default function Country() {
-  const [countries, setCountries] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  useEffect(() => {
-    setIsLoading(true);
-    getCountries()
-      .then((data) => setCountries(data))
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  const headersFooters = [
-    {
-      key: "id",
-      label: "ID",
+export const options1 = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
     },
-    {
-      key: "name",
-      label: "País",
+    title: {
+      display: true,
+      text: "Region Data",
     },
-    {
-      key: "prefix",
-      label: "Prefijo",
+  },
+};
+export const options2 = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
     },
-  ];
+    title: {
+      display: true,
+      text: "Region New Data",
+    },
+  },
+};
+export const options3 = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: "Region Per Hundred Data",
+    },
+  },
+};
 
-  const TableHeaderFooter = () => (
-    <Tr>
-      {headersFooters.map((header) => (
-        <Th key={header.key}>{header.label}</Th>
-      ))}
-    </Tr>
+
+export default function Daily() {
+  const [regionInfo, setRegionInfo] = useState([]);
+  const [regionNewData, setRegionNewData] = useState([]);
+  const [regionHundredCases, setRegionHundredCases] = useState([]);
+
+  const labels = useMemo(
+    () => regionInfo.map((region) => region.region),
+    [regionInfo]
   );
 
+  const data1 = useMemo(
+    () => ({
+      labels,
+      datasets: [
+        {
+          label: "Deaths",
+          data: regionInfo.map((country) => country.region_deaths),
+          backgroundColor: 'rgba(54, 99, 255, 0.4)',
+        },
+        {
+          label: "Recovered",
+          data: regionInfo.map((country) => country.region_recovered),
+          backgroundColor: 'rgba(54, 99, 255, 0.6)',
+        },
+        {
+          label: "Confirmed",
+          data: regionInfo.map((country) => country.region_confirmed),
+          backgroundColor: 'rgba(54, 99, 255, 0.8)',
+        },
+        {
+          label: "Active",
+          data: regionInfo.map((country) => country.region_active),
+          backgroundColor: 'rgba(54, 99, 255, 1)',
+        },
+      ],
+    }),
+    [regionInfo, labels]
+  );
+  
+  const data2 = useMemo(
+    () => ({
+      labels,
+      datasets: [
+        {
+          label: "New Cases",
+          data: regionNewData.map((newcases) => newcases.new_cases),
+          backgroundColor: 'rgba(54, 99, 255, 0.4)',
+        },
+        {
+          label: "New Deaths",
+          data: regionNewData.map((newcases) => newcases.new_deaths),
+          backgroundColor: 'rgba(54, 99, 255, 0.6)',
+        },
+        {
+          label: "New Recovered",
+          data: regionNewData.map((newcases) => newcases.new_recovered),
+          backgroundColor: 'rgba(54, 99, 255, 0.8)',
+        },
+      ],
+    }),
+    [regionNewData, labels]
+  );
+  
+  const data3 = useMemo(
+    () => ({
+      labels,
+      datasets: [
+        {
+          label: "Deaths per 100 Cases",
+          data: regionHundredCases.map((hundredcases) => hundredcases.deaths_100cases),
+          backgroundColor: 'rgba(54, 99, 255, 0.4)',
+        },
+        {
+          label: "Recovered per 100 Cases",
+          data: regionHundredCases.map((hundredcases) => hundredcases.recovered_100cases),
+          backgroundColor: 'rgba(54, 99, 255, 0.6)',
+        },
+        {
+          label: "Deaths per 100 Recovered",
+          data: regionHundredCases.map((hundredcases) => hundredcases.deaths_100recovered),
+          backgroundColor: 'rgba(54, 99, 255, 0.8)',
+        },
+      ],
+    }),
+    [regionHundredCases, labels]
+  );
+
+  useEffect(() => {
+    getCovidRegionInfo().then((data1) => setRegionInfo(data1));
+    getCovidRegionNew().then((data2) => setRegionNewData(data2));
+    getCovidRegionHundred().then((data3) => setRegionHundredCases(data3));
+  }, []);
+
   return (
-    <Box>
-      <TableContainer>
-        <Table size="lg" variant="striped" colorScheme="gray">
-          <TableCaption>
-            {isLoading && (
-              <Progress size="xs" isIndeterminate colorScheme="cokiBlue" />
-            )}
-            <Text>Tabla de Países y prefijos</Text>
-          </TableCaption>
-          <Thead>
-            <TableHeaderFooter />
-          </Thead>
-          <Tbody>
-            {countries.map((country) => (
-              <Tr key={country.id}>
-                <Td>{country.id}</Td>
-                <Td>{country.name}</Td>
-                <Td>{country.prefix}</Td>
-              </Tr>
-            ))}
-          </Tbody>
-          <Tfoot>
-            <TableHeaderFooter />
-          </Tfoot>
-        </Table>
-      </TableContainer>
+    <Box
+      width={{
+        base: "50vw",
+        sm: "80vw",
+        md: "50vw",
+      }}
+    > 
+      <VStack spacing={20}>
+      <Bar data={data1} options={options1} />
+      <Bar data={data2} options={options2} />
+      <Bar data={data3} options={options3} />
+      </VStack>
+      
     </Box>
+    
   );
 }

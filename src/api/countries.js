@@ -1,6 +1,6 @@
 export const getCountries = async () => {
   try {
-    const request = await fetch("http://localhost:8000/countries/", {
+    const request = await fetch("https://bddprueba.herokuapp.com/countries/", {
       method: "GET",
       headers: new Headers({ "Content-type": "application/json" }),
       mode: "cors",
