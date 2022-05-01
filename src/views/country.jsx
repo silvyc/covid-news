@@ -1,5 +1,5 @@
 import { Box, Progress, Text } from "@chakra-ui/react";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getCountries } from "../api/countries";
 import {
   Table,
