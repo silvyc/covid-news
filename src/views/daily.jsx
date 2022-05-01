@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 
 
-export default function Home() {
+export default function Daily() {
   return (
      <Box>
        
