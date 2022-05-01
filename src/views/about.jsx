@@ -1,54 +1,37 @@
-import { Box, HStack, Image, Stack, Text, VStack } from "@chakra-ui/react";
+import { Box, Stack, Text } from "@chakra-ui/react";
+import StudentAvatar from "../components/studentAvatar";
+
+const students = [
+  {
+    name: "Silvana Chain",
+    email: "smchain@uninorte.edu.co",
+    image: "SilvanaChain",
+    code: "200143952",
+  },
+  {
+    name: "Juan Padilla",
+    email: "paezdj@uninorte.edu.co",
+    image: "JuanPadilla",
+    code: "200145173",
+  },
+];
 
 export default function About() {
   return (
     <Box>
-      <Text fontSize='4xl' align={'center'}>About us</Text>
+      <Text fontSize="4xl" align={"center"} mb={5}>
+        About us
+      </Text>
       <Stack
-        direction={'column'}
+        direction={{
+          base: "column",
+          "2xl": "row",
+        }}
+        spacing="3rem"
       >
-        <HStack
-          spacing='25px'
-          alignItems='center'
-        >
-          <Image  
-            borderRadius='full'
-            boxSize='150px'
-            alt="Silvana Chain" 
-            src='/img/SilvanaChain.jpg' />
-            <VStack alignItems={'flex-start'} justifyContent={'flex-start'}>
-            <Text fontSize='xl'>
-              Silvana Maria Alexandra Chain Marulanda 
-            </Text>
-            <Text align={"left"}>
-              smchain@uninorte.edu.co
-            </Text>
-            <Text align={"left"}>
-              Codigo Estudiantil: 200143952
-            </Text>
-            </VStack>
-        </HStack>
-        <HStack
-          spacing='25px'
-          alignItems='center'
-        >
-          <Image 
-            borderRadius='full'
-            boxSize='150px'
-            alt="Juan Padilla" 
-            src='/img/JuanPadilla.jpg'/>
-            <VStack alignItems={'flex-start'} justifyContent={'flex-start'}>
-            <Text fontSize='xl'>
-              Juan David Padilla Paez
-            </Text>
-            <Text align={"left"}>
-              paezdj@uninorte.edu.co
-            </Text>
-            <Text align={"left"}>
-              Codigo Estudiantil: 200145173
-            </Text>
-            </VStack>
-        </HStack>
+        {students.map((student) => (
+          <StudentAvatar {...student} />
+        ))}
       </Stack>
     </Box>
   );
