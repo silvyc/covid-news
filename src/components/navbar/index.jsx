@@ -33,7 +33,7 @@ const NavBar = () => {
       }}
       py={5}
       position="sticky"
-      top="10vh"
+      top="11vh"
     >
       <VStack as={"nav"} spacing={4}>
         {links.map((link) => (

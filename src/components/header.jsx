@@ -3,7 +3,7 @@ import Logo from "./logo";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 const Header = () => (
-  <Box as="header" position="sticky" top={0}>
+  <Box as="header">
     <Stack
       direction={"row"}
       justifyContent="space-between"

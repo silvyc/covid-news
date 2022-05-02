@@ -6,7 +6,9 @@ import Header from "./components/header";
 function App() {
   return (
     <Box height="100%">
-      <Header />
+      <Box position="sticky" top={0} zIndex={2}>
+        <Header />
+      </Box>
       <Stack
         direction={{
           base: "column",
@@ -23,6 +25,7 @@ function App() {
             base: "block",
             md: "none",
           }}
+          zIndex={1}
         >
           <NavBar />
         </Box>
