@@ -19,7 +19,14 @@ const students = [
 export default function About() {
   return (
     <Box>
-      <Text fontSize="4xl" align={"center"} mb={5}>
+      <Text
+        fontSize={{
+          base: "2xl",
+          md: "4xl",
+        }}
+        align={"center"}
+        mb={5}
+      >
         About us
       </Text>
       <Stack
