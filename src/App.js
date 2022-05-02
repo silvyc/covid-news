@@ -9,17 +9,33 @@ function App() {
       <Header />
       <Stack
         direction={{
+          base: "column",
           sm: "column",
           md: "row",
         }}
-        justifyContent="space-between"
+        justifyContent="space-around"
         my={5}
         mx={10}
+        spacing={{ base: 5, sm: 10 }}
       >
+        <Box
+          display={{
+            base: "block",
+            md: "none",
+          }}
+        >
+          <NavBar />
+        </Box>
         <Box>
           <Routing />
         </Box>
-        <Box>
+        <Box
+          position="sticky"
+          display={{
+            base: "none",
+            md: "block",
+          }}
+        >
           <NavBar />
         </Box>
       </Stack>

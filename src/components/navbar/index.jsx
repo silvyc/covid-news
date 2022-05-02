@@ -32,11 +32,13 @@ const NavBar = () => {
         xl: 400,
       }}
       py={5}
+      position="sticky"
+      top="10vh"
     >
       <VStack as={"nav"} spacing={4}>
         {links.map((link) => (
           <Link as={ReactRouterLink} to={link.path} key={link.name}>
-            <Text color='white' >{link.name}</Text>
+            <Text color="white">{link.name}</Text>
           </Link>
         ))}
       </VStack>

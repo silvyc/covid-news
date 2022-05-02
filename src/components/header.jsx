@@ -1,21 +1,20 @@
-import { Box, Stack } from "@chakra-ui/react";
+import { Box, Stack, Link } from "@chakra-ui/react";
 import Logo from "./logo";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 const Header = () => (
-  <Box as="header">
+  <Box as="header" position="sticky" top={0}>
     <Stack
-      direction={{
-        base: "column",
-        sm: "column",
-        md: "row",
-      }}
+      direction={"row"}
       justifyContent="space-between"
       alignItems="center"
       bgColor="cokiBlue.500"
-      minHeight="8vh"
+      height="8vh"
       px="2rem"
     >
-      <Logo src="COVID NEWS.png" />
+      <Link as={ReactRouterLink} to="/">
+        <Logo src="COVID NEWS.png" />
+      </Link>
       <Logo src="Logo-UNINORTE.png" />
     </Stack>
   </Box>

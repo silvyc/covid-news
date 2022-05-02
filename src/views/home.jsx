@@ -9,10 +9,17 @@ export default function Home() {
         align="stretch"
       >
         <Box>
-          <Text fontSize="3xl" fontWeight="bold" mb={2}>
+          <Text
+            fontSize={{
+              base: "xl",
+              md: "3xl",
+            }}
+            fontWeight="bold"
+            mb={2}
+          >
             What is COVID-19?
           </Text>
-          <Text textAlign="justify" mb={3}>
+          <Text textAlign="justify" mb={3} fontSize="md">
             Coronavirus disease (COVID-19) is an infectious disease caused by
             the SARS-CoV-2 virus. Most people infected with the virus will
             experience mild to moderate respiratory illness and recover without
@@ -29,7 +36,7 @@ export default function Home() {
             frequently. Get vaccinated when it’s your turn and follow local
             guidance.
           </Text>
-          <Text textAlign="justify">
+          <Text textAlign="justify" fontSize="md">
             The virus can spread from an infected person’s mouth or nose in
             small liquid particles when they cough, sneeze, speak, sing or
             breathe. These particles range from larger respiratory droplets to
